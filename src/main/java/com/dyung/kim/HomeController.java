@@ -11,6 +11,11 @@ public class HomeController {
 	public String index() {
 		return "index";
 	}
+	
+	@RequestMapping(value ="/joinForm", method = RequestMethod.GET)
+	public String joinForm() {
+		return "joinForm";
+	}
 /*	
 	@RequestMapping(value="/elements", method=RequestMethod.GET)
 	public String elements() {
