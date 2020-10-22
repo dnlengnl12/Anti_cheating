@@ -18,7 +18,7 @@ body .container {
   position: relative;
   overflow: hidden;
   width: 700px;
-  height: 500px;
+  height: 1000px;
   margin: 80px auto 00;
 }
 body .container h1 {
@@ -39,16 +39,10 @@ body .container .tabs {
 
 }
 
-body .container #selectStyle{
-	font-size: 15px;
-	font-weigth: 700;
-	width : 100%;
-	height: 40px;
-	margin-left: 5px;
-}
+
 body .container .tabs .tab {
   display: inline-block;
-  width:100%;
+  width:30%;
   margin-bottom: -1px;
 
   padding-bottom: 10px;
@@ -108,8 +102,7 @@ body .container .content span.explain {
 }
 body .container .content input.inpt {
   font-size: 14px;
-  display: block;
-  width: 80%;
+  width: 40%;
   height: 42px;
   margin-bottom: 12px;
   padding: 16px 13px;
@@ -123,8 +116,157 @@ body .container .content input.inpt {
 }
 body .container .content input.inpt2 {
   font-size: 14px;
-  display: block;
-  width: 70%;
+  width: 40%;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 16px 13px;
+  color: #999999;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  margin: 0px 0px 12px 40px;
+}
+body .container .content input.birthpt {
+  font-size: 14px;
+  width: 22%;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 5px 13px;
+  color: #999999;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  margin: 0px 0px 12px 40px;
+}
+body .container .content input.emailpt {
+  font-size: 14px;
+  width: 18%;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 16px 13px;
+  color: #999999;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  margin: 0px 0px 12px 40px;
+}
+
+body .container .content input.emailpt2 {
+  font-size: 14px;
+  width: 22%;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 16px 13px;
+  color: #999999;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  margin: 0px 0px 12px 5px;
+}
+body .container .content select.emailpt3 {
+  font-size: 14px;
+  width: 22%;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 5px 13px;
+  color: #999999;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  margin: 0px 0px 12px 5px;
+}
+
+body .container .content input.emailCertify {
+  font-size: 12px;
+  line-height: 20px;
+  width: 17%;
+  height: 42px;
+  padding: 5px 13px;
+  margin-bottom: 2px;
+  vertical-align: middle;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #263238;
+  border: 1px solid #5a60c5;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 5px;
+}
+
+body .container .content input.phoneStyle {
+  font-size: 14px;
+  width: 10%;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 5px 13px;
+  color: #999999;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  margin: 0px 0px 12px 40px;
+}
+
+body .container .content input.phoneStyle2 {
+  font-size: 14px;
+  width: 13%;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 5px 13px;
+  color: #999999;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  margin: 0px 0px 12px 5px;
+}
+body .container .content input.schoolpt {
+  font-size: 14px;
+  width: 40%;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 16px 13px;
+  color: #999999;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  margin: 0px 0px 12px 40px;
+}
+body .container .content input.schoolbt {
+  font-size: 12px;
+  line-height: 20px;
+  width: 17%;
+  height: 42px;
+  padding: 5px 13px;
+  margin-bottom: 2px;
+  vertical-align: middle;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #263238;
+  border: 1px solid #5a60c5;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 5px;
+}
+body .container .content input.studentcodept {
+  font-size: 14px;
+  width: 40%;
   height: 42px;
   margin-bottom: 12px;
   padding: 16px 13px;
@@ -138,7 +280,6 @@ body .container .content input.inpt2 {
 }
 body .container .content select.sept {
   font-size: 14px;
-  display: block;
   width: 120%;
   height : 42px;
   margin: 0px 0px 12px 5px;
@@ -170,7 +311,7 @@ body .container .content input.submit {
   font-size: 12px;
   line-height: 42px;
   display: block;
-  width: 48%;
+  width: 100%;
   height: 42px;
   cursor: pointer;
   vertical-align: middle;
@@ -182,7 +323,25 @@ body .container .content input.submit {
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  float : right;
+  margin-top: 30px;
+  float : center;
+}
+body .container .content  input.duch {
+  font-size: 12px;
+  line-height: 20px;
+  width: 17%;
+  height: 42px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  vertical-align: middle;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #263238;
+  border: 1px solid #5a60c5;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 5px;
 }
 body .container .content input.submit:hover {
   background-color: #263238;
@@ -358,12 +517,33 @@ body .container .content .signup-cont {
 				            <div class="signin-cont cont">
 					                <form action="login.do" method="post" enctype="multipart/form-data">
 					                		<span class="explain">아이디</span>
-					                		<div style="margin:0 auto;">
+					                		<br>
 						                    <input type="text" name="m_id" id="email" class="inpt"  placeholder="아이디를 입력해 주세요.">
-						                  <b>@</b>
+						                  	<input type="button" value="중복 확인" class="duch">
+						                  	<br>
+						                  	<span class="explain">비밀번호</span>
+						                    <br>
+						                    <input type="password" name="m_password" id="password" class="inpt2"  placeholder="비밀번호를 입력해 주세요.">
+                						    <br>
+                						    <span class="explain">비밀번호 확인</span>
+                						    <br>
+                						    <input type="password" id="password2" placeholder="비밀번호를 확인해 주세요." class="inpt2">
+						                    <br>
+						                    <span class="explain">핸드폰 번호</span>
+						                    <br>
+						                    <input type="text" class="phoneStyle"> - <input type="text" class="phoneStyle2"> - <input type="text" class="phoneStyle2">
+						                    <br>
+						                    <span class="explain">생년월일</span>
+						                    <br>
+						                    <input type="text" placeholder="예)19950213" class="birthpt">
+						                    <br>
+						                    <span class="explain">이메일</span>
+						                    <br>
+						                    <input type="text" class="emailpt">
+						                 	<b>@</b>
 						                    
-						                    <input type="text" id="selectStyle" name="email2" value="" ReadOnly="true">
-											<select name="emailCheck" id="selectStyle" onchange="SetEmailTail(emailCheck.options[this.selectedIndex].value)">
+						                    <input type="text" id="selectStyle" name="email2" value="" ReadOnly="true" class="emailpt2">
+											<select name="emailCheck" id="selectStyle" onchange="SetEmailTail(emailCheck.options[this.selectedIndex].value)" class="emailpt3">
     											<option value="notSelected" >::선택하세요::</option>
     											<option value="etc">직접입력</option>
    												<option value="naver.com">naver.com</option>
@@ -382,29 +562,19 @@ body .container .content .signup-cont {
    											 	<option value="paran.com">paran.com</option>    
    											 	<option value="gmail.com">gmail.com</option>
    											</select>
-   											</div>
-						                    <!-- <select class="sept" id="selectEmail">
-						                    	<option value="naver.com">naver.com</option>
-						                    	<option value="google.co.kr">google.co.kr</option>
-						                    	<option value="daum.net">daum.net</option>
-						                    	<option value="1">직접 입력</option>
-						                    </select>
-						                     -->
-											<span class="explain">비밀번호</span>
-						                    <input type="password" name="m_password" id="password" class="inpt2"  placeholder="Your password">
-                						    <label for="password">Your password</label>
-						                    <input type="checkbox" id="remember" class="checkbox" checked>
-						                    <label for="remember">Remember me</label>
+   											<input type="button" value="이메일 인증" class="emailCertify">
+   											<br>
+   											<span class="explain">학교&학과</span>
+   											<br>
+   											<input type="text" placeholder="학교를 검색를 해 주세요." readonly="true" class="schoolpt">
+   											<input type="button" value="학교 검색" class="schoolbt">
+											<br>
+											<span class="explain">학번or교번</span>
+											<br>
+											<input type="text" placeholder="학번or교번을 입력 해 주세요." class="studentcodept">
 						                    <div class="submit-wrap">
+						                   
                                     <input type="button" value="회원가입" class="submit" onclick="agree();">
-                                   
-                                    <input type="submit" value="로그인" class="submit" onclick=";"><br><br>
-                                    
-                                      <a href="searchIdpass.jsp" class="more">아이디 / 비밀번호를 잊으셨나요?</a>
-                          
-                                </div>
-                                <div class="sign_up">
-
                                 </div>
         					        </form>
     				        </div>
