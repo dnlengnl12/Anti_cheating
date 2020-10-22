@@ -321,7 +321,7 @@ body .container .content .signup-cont {
                                    
 			                                    <input type="submit" value="로그인" class="submit" onclick=";"><br><br>
                                     
-            		                          <a href="searchIdpass.jsp" class="more">아이디 / 비밀번호를 잊으셨나요?</a>
+            		                          <a href="search" class="more">아이디 / 비밀번호를 잊으셨나요?</a>
                           
         	                        </div>
     	                            <div class="sign_up">

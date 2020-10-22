@@ -14,13 +14,17 @@ public class HomeController {
 	
 	@RequestMapping(value="/agree", method = RequestMethod.GET)
 	public String agree() {
-		
 		return "agreePage";
 	}
 	
 	@RequestMapping(value ="/joinForm", method = RequestMethod.POST)
 	public String joinForm() {
 		return "joinForm";
+	}
+	
+	@RequestMapping(value ="/search", method = RequestMethod.GET)
+	public String search() {
+		return "searchIdpass";
 	}
 /*	
 	@RequestMapping(value="/elements", method=RequestMethod.GET)
