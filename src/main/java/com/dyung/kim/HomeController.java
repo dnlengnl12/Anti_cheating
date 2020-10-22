@@ -12,7 +12,13 @@ public class HomeController {
 		return "index";
 	}
 	
-	@RequestMapping(value ="/joinForm", method = RequestMethod.GET)
+	@RequestMapping(value="/agree", method = RequestMethod.GET)
+	public String agree() {
+		
+		return "agreePage";
+	}
+	
+	@RequestMapping(value ="/joinForm", method = RequestMethod.POST)
 	public String joinForm() {
 		return "joinForm";
 	}

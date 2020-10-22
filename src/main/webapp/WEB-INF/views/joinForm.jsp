@@ -38,6 +38,14 @@ body .container .tabs {
 
 
 }
+
+body .container #selectStyle{
+	font-size: 15px;
+	font-weigth: 700;
+	width : 100%;
+	height: 40px;
+	margin-left: 5px;
+}
 body .container .tabs .tab {
   display: inline-block;
   width:100%;
@@ -58,9 +66,14 @@ body .container .tabs span{
 }
 
 
+
 body .container .content form {
   position: relative;
   height: 287px;
+}
+
+body .container .content div #email_float {
+	float: left;
 }
 body .container .content label:first-of-type, body .container .content input:first-of-type, body .container .content .more:first-of-type {
   -moz-animation: slideIn 0.4s cubic-bezier(0.37, 0.82, 0.2, 1);
@@ -88,10 +101,15 @@ body .container .content label {
 body .container .content label:not([for='remember']) {
   display: none;
 }
+
+body .container .content span.explain {
+	font-size: 15px;
+	margin: 0px 0px 12px 40px;
+}
 body .container .content input.inpt {
   font-size: 14px;
   display: block;
-  width: 100%;
+  width: 80%;
   height: 42px;
   margin-bottom: 12px;
   padding: 16px 13px;
@@ -101,6 +119,29 @@ body .container .content input.inpt {
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
+  margin: 0px 0px 12px 40px;
+}
+body .container .content input.inpt2 {
+  font-size: 14px;
+  display: block;
+  width: 70%;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 16px 13px;
+  color: #999999;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  margin: 0px 0px 12px 40px;
+}
+body .container .content select.sept {
+  font-size: 14px;
+  display: block;
+  width: 120%;
+  height : 42px;
+  margin: 0px 0px 12px 5px;
 }
 body .container .content input.inpt::-webkit-input-placeholder {
   font-size: 14px;
@@ -252,6 +293,22 @@ body .container .content .signup-cont {
 	function agree(){
 		location.href="/joinForm";
 	}
+	function SetEmailTail(emailValue) {
+		  var email = document.all("email")    // 사용자 입력
+		  var emailTail = document.all("email2") // Select box
+		  
+		  if ( emailValue == "notSelected" )
+		   return;
+		  else if ( emailValue == "etc" ) {
+		   emailTail.readOnly = false;
+		   emailTail.value = "";
+		   emailTail.focus();
+		  } else {
+		   emailTail.readOnly = true;
+		   emailTail.value = emailValue;
+		  }
+	}
+
 </script>
 	<head>
 		<title>Industrious by TEMPLATED</title>
@@ -300,9 +357,41 @@ body .container .content .signup-cont {
 			        <div class="content">
 				            <div class="signin-cont cont">
 					                <form action="login.do" method="post" enctype="multipart/form-data">
-						                    <input type="text" name="m_id" id="email" class="inpt"  placeholder="Your ID">
-
-						                    <input type="password" name="m_password" id="password" class="inpt"  placeholder="Your password">
+					                		<span class="explain">아이디</span>
+					                		<div style="margin:0 auto;">
+						                    <input type="text" name="m_id" id="email" class="inpt"  placeholder="아이디를 입력해 주세요.">
+						                  <b>@</b>
+						                    
+						                    <input type="text" id="selectStyle" name="email2" value="" ReadOnly="true">
+											<select name="emailCheck" id="selectStyle" onchange="SetEmailTail(emailCheck.options[this.selectedIndex].value)">
+    											<option value="notSelected" >::선택하세요::</option>
+    											<option value="etc">직접입력</option>
+   												<option value="naver.com">naver.com</option>
+  											 	<option value="nate.com">nate.com</option>
+   												<option value="empal.com">empal.com</option>
+   											 	<option value="hotmail.com">hotmail.com</option>
+  											  	<option value="lycos.co.kr">lycos.co.kr</option>
+   											 	<option value="msn.com">msn.com</option>
+  											  	<option value="hanmail.net">hanmail.net</option>
+  											  	<option value="yahoo.com">yahoo.com</option>
+  											  	<option value="korea.com">korea.com</option>
+  											  	<option value="kornet.net">kornet.net</option>
+   											 	<option value="yahoo.co.kr">yahoo.co.kr</option>
+    											<option value="kebi.com">kebi.com</option>
+   												<option value="orgio.net">orgio.net</option>
+   											 	<option value="paran.com">paran.com</option>    
+   											 	<option value="gmail.com">gmail.com</option>
+   											</select>
+   											</div>
+						                    <!-- <select class="sept" id="selectEmail">
+						                    	<option value="naver.com">naver.com</option>
+						                    	<option value="google.co.kr">google.co.kr</option>
+						                    	<option value="daum.net">daum.net</option>
+						                    	<option value="1">직접 입력</option>
+						                    </select>
+						                     -->
+											<span class="explain">비밀번호</span>
+						                    <input type="password" name="m_password" id="password" class="inpt2"  placeholder="Your password">
                 						    <label for="password">Your password</label>
 						                    <input type="checkbox" id="remember" class="checkbox" checked>
 						                    <label for="remember">Remember me</label>

@@ -250,7 +250,7 @@ body .container .content .signup-cont {
 <html>
 <script type="text/javascript">
 	function agree(){
-		location.href="/joinForm";
+		location.href="/agree";
 	}
 </script>
 	<head>
