@@ -37,7 +37,7 @@
 
 		<!-- Heading -->
 			<div id="heading" >
-				<h1>Elements</h1>
+				<h1>MANAGER</h1>
 			</div>
 
 		<!-- Main -->

@@ -278,6 +278,7 @@ body .container .content .signup-cont {
 					<li><a href="/">HOME</a></li>
 					<li><a href="/professor/main">PROFESSOR</a></li>
 					<li><a href="/student/main">STUDENT</a></li>  
+					<li><a href="/manager/main">MANAGER</a></li>  
 				</ul>
 			</nav>
 
