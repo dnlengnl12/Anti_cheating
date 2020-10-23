@@ -257,7 +257,7 @@ body .container .content input.phoneStyle3 {
 }
 body .container .content input.schoolpt {
   font-size: 14px;
-  width: 40%;
+  width: 30%;
   height: 42px;
   margin-bottom: 12px;
   padding: 16px 13px;
@@ -272,7 +272,7 @@ body .container .content input.schoolpt {
 body .container .content input.schoolbt {
   font-size: 12px;
   line-height: 20px;
-  width: 17%;
+  width: 20%;
   height: 42px;
   padding: 5px 13px;
   margin-bottom: 2px;
@@ -285,6 +285,20 @@ body .container .content input.schoolbt {
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 5px;
+}
+body .container .content input.departpt {
+  font-size: 14px;
+  width: 30%;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 16px 13px;
+  color: #999999;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  margin: 0px 0px 12px 5px;
 }
 body .container .content input.studentcodept {
   font-size: 14px;
@@ -713,8 +727,9 @@ body .container .content .signup-cont {
    											<br>
    											<span class="explain">학교&학과</span>
    											<br>
-   											<input type="text" id="school_code" placeholder="학교를 검색를 해 주세요." readonly="true" class="schoolpt">
-   											<input type="button" value="학교 검색" class="schoolbt">
+   											<input type="text" id="school_code" placeholder="학교를 검색 해 주세요." readonly="true" class="schoolpt">
+   											<input type="text" id="depart_code" placeholder="학과를 검색 해 주세요." readonly="true" class="departpt">
+   											<input type="button" value="학교&학과 검색" class="schoolbt" onclick="window.open('/searchSchool','학교검색',left='+(screen.availWidth-1000)/2+',top='+(screen.availHeight-600)/2+','width=1000,height=600,location=center,status=no,scrollbars=yes');">
 											<br>
 											<span class="explain">학번or교번</span>
 											<br>
