@@ -1,5 +1,8 @@
 package com.dyung.kim.service;
 
-public class ManagerService {
+import org.springframework.stereotype.Service;
 
+@Service
+public class ManagerService {
+	
 }

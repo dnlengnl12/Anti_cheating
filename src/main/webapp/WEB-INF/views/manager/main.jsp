@@ -43,8 +43,15 @@
 		<!-- Main -->
 			<section id="main" class="wrapper">
 				<div class="inner">
-					<div class="content">
-						
+					<div class="content">	
+						<form action="/manager/school" method="get">
+							학교 코드: <input type="text">
+							학교 입력: <input type="text">
+							학과 코드: <input type="text">
+							학과 입력: <input type="text">
+							<br><input type="submit" value="추가">
+						</form>
+					
 					</div>
 				</div>
 			</section>
