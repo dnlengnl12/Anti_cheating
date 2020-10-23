@@ -26,6 +26,11 @@ public class HomeController {
 	public String search() {
 		return "searchIdpass";
 	}
+	
+	@RequestMapping(value ="/join", method = RequestMethod.POST)
+	public String join() {
+		return "index";
+	}
 /*	
 	@RequestMapping(value="/elements", method=RequestMethod.GET)
 	public String elements() {
