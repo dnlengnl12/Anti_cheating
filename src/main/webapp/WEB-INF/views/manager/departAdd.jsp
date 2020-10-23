@@ -17,15 +17,6 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<link rel="stylesheet" href="../resources/assets/css/main.css" />
-		
-		<script type="text/javascript">
-			function schoolCode() {
-				var school_code = document.getElementById('school_code').value;
-				
-				location.href="/manager/departAdd?school_code=" + school_code;
-			}
-		
-		</script>
 	</head>
 	<body class="is-preload">
 
@@ -40,7 +31,7 @@
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="/">Home</a></li>
+					<li><a href="/">Home</a></li>				
 					<li><a href="/manager/main">SCHOOL INFO</a></li>
 					<li><a href="/manager/departMain">DEPART INFO</a></li>
 				</ul>
@@ -55,10 +46,11 @@
 			<section id="main" class="wrapper">
 				<div class="inner">
 					<div class="content">	
-						<form action="/manager/schoolSearch" method="get">
-							학교 코드: <input type="text" name="school_code" id="school_code">
-							<input type="hidden" id="school_code" value="${school_code }">
-							<br><input type="submit" value="입력">
+						<form action="/manager/depart" method="get">
+							학과 코드: <input type="text" name="depart_code">
+							학과 이름: <input type="text" name="depart_name">
+							<input type="hidden" name="school_code" value="${school.school_code }" >
+							<br><input type="submit" value="추가">
 						</form>
 					</div>
 				</div>

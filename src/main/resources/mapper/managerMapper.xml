@@ -5,28 +5,28 @@
 		
 	<insert id="insertSchool" parameterType="school">
 		insert into
-			"School"(
-				"school_code",
-				"school_name"
+			School(
+				school_code,
+				school_name
 			)values(
 				#{school_code},
 				#{school_name}
 			)
 	</insert>
 	
-	<select id="selcetOneSchool" parameterType="String">
+	<select id="selcetOneSchool" parameterType="String" resultType="school">
 		select
-			"school_code",
-			"school_name"
+			school_code,
+			school_name
 		from
-			"School"
+			School
 		where
-			"school_code" = #{school_code}
+			school_code = #{school_code}
 	</select>
 	
 	<insert id="insertDepart" parameterType="hashmap">
 		insert into 
-			Depart(
+			Department(
 				depart_code,
 				school_code,
 				depart_name
@@ -35,6 +35,5 @@
 				#{school_code},
 				#{depart_name}
 			)
-		
 	</insert>
 </mapper>

@@ -5,19 +5,13 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.dyung.kim.vo.NoticeVO" alias="notice"/>
-<<<<<<< HEAD
 		<typeAlias type="com.dyung.kim.vo.SchoolVO" alias="school"/>
 		<typeAlias type="com.dyung.kim.vo.DepartVO" alias="depart"/>
-	</typeAliases>
-	<mappers>
-		<mapper resource="mapper/noticeMapper.xml"/>
-		<mapper resource="mapper/managerMapper.xml"/>
-=======
 		<typeAlias type="com.dyung.kim.vo.MemberVO" alias="member"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/noticeMapper.xml"/>
+		<mapper resource="mapper/managerMapper.xml"/>
 		<mapper resource="mapper/memberMapper.xml"/>
->>>>>>> f46ea0803c46106108b5a26dd0dad2d931d9c0f3
 	</mappers>
 </configuration>
