@@ -31,7 +31,7 @@
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="/">Home</a></li>				
+					<li><a href="/">Home</a></li>
 					<li><a href="/manager/main">SCHOOL INFO</a></li>
 					<li><a href="/manager/departMain">DEPART INFO</a></li>
 				</ul>
@@ -48,8 +48,7 @@
 					<div class="content">	
 						<form action="/manager/school" method="get">
 							학교 코드: <input type="text" name="school_code">
-							학교 이름: <input type="text" name="school_name">
-							<br><input type="submit" value="추가">
+							<br><input type="submit" value="입력">
 						</form>
 					</div>
 				</div>

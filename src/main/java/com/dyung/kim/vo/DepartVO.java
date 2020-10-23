@@ -6,5 +6,5 @@ import lombok.Data;
 public class DepartVO {
 	private String depart_code;
 	private String school_code;
-	private String depart_name;
+	private String depart_name; 
 }

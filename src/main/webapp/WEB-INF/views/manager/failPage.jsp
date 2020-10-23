@@ -46,11 +46,7 @@
 			<section id="main" class="wrapper">
 				<div class="inner">
 					<div class="content">	
-						<form action="/manager/school" method="get">
-							학교 코드: <input type="text" name="school_code">
-							학교 이름: <input type="text" name="school_name">
-							<br><input type="submit" value="추가">
-						</form>
+						<h3>추가 실패</h3>
 					</div>
 				</div>
 			</section>
