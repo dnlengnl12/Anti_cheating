@@ -3,7 +3,7 @@ package com.dyung.kim.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+import com.dyung.kim.Dto.CalendarDto;
 import com.dyung.kim.vo.NoticeVO;
 
 public interface NoticeMapper {
@@ -17,4 +17,5 @@ public interface NoticeMapper {
 
 	public NoticeVO noticeSelectOne(int notice_seq);
 	public int noticeCount(HashMap<String, Object> hashmap);
+
 }

@@ -15,50 +15,22 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<script src="/resources/jquery3.3.1.min.js"></script>
+<!-- 		<script src="/resources/jquery3.3.1.min.js"></script>
 		<script type="text/javascript" src="/resources/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/resources/bootstrap.min.css"></script>
 		<script type="text/javascript" src="/resources/bootstrap-theme.min.css"></script>
-		<script type="text/javascript" src="/resources/sweetalert.min.js"></script>
-		<link rel="stylesheet" type="text/css" href='/resources/sweetalert.css'>
-		<script type="text/javascript" src="/resources/stringBuffer.js"></script>
-		<script type="text/javascript" src="/resources/calendar.js"></script>
-
-		<script type="text/javascript" src="/resources/calendarSchdule.js"></script>
-
-		<link rel="stylesheet" href="../resources/assets/css/main.css" />
+ -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SCIT Calendar</title>
+    <link rel="stylesheet" href="/resources/calendar/vendor/css/fullcalendar.min.css" />
+    <link rel="stylesheet" href="/resources/calendar/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href='/resources/calendar/vendor/css/select2.min.css' />
+    <link rel="stylesheet" href='/resources/calendar/vendor/css/bootstrap-datetimepicker.min.css' />
+    <link rel="stylesheet" href="/resources/calendar/css/main.css">
 		
+		<link rel="stylesheet" href="/resources/assets/css/main.css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<style type="text/css">
 		
-		thead {
-		
-		    text-align: center;
-		
-		}
-		
-		thead td {
-		
-		    width: 100px;
-		
-		}
-		
-		#tbody td {
-		
-		    height: 150px;
-		
-		}
-		
-		#yearMonth {
-		
-		    font: bold;
-		
-		    font-size: 18px;
-		
-		}
-	
-		</style>
-
 	</head>
 	<body class="is-preload">
 
@@ -87,258 +59,116 @@
 			</div>
 
 		<!-- Main -->
-			<section id="main" class="wrapper">
-				<div class="inner">
-					<div class="content">
-						<h2>일정</h2>
-							<body>
 
-    <input type="hidden" id="chk" value="0" />
-
-    <input type="hidden" id="calendarId" value="${calendarId}" />
-
-    <table class="table table-bordered">
-
-        <thead id='thead'>
-
-            <tr>
-
-                <td colspan="7">
-
-                    <button type='button' class='btn btn-sm btn-warning'
-
-                        id='moveFastPre' onclick="moveFastMonthPre()">«</button>
-
-                     
-
-                    <button type='button' class='btn btn-sm btn-warning' id='movePre'
-
-                        onclick="moveMonthPre()">‹</button>    <span
-
-                    id='yearMonth'></span>   
-
-                    <button type='button' class='btn btn-sm btn-warning' id='moveNext'
-
-                        onclick="moveMonthNext()">›</button>  
-
-                    <button type='button' class='btn btn-sm btn-warning'
-
-                        id='moveFastNext' onclick="moveFastMonthNext()">»</button>
-
-                    <div style="text-align: right;">
-
-                        <span>${title}</span> <input class='btn btn-sm btn-info'
-
-                            type="button" value="주" onclick='tabWeek()' /> <input
-
-                            class='btn btn-sm btn-info' type="button" value="월"
-
-                            onclick='tabMonth()' /> <input class='btn btn-sm btn-info'
-
-                            type="button" value="목록" onclick='location.href="./coding.do"' />
-
+					 		<div class="container">
+        <!-- 일자 클릭시 메뉴오픈 -->
+        <div id="contextMenu" class="dropdown clearfix">
+            <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
+                style="display:block;position:static;margin-bottom:5px;">
+                <li><a tabindex="-1" href="#">IT Class</a></li>
+                <li><a tabindex="-1" href="#">Japanese Class</a></li>
+                <li><a tabindex="-1" href="#">Job Fair</a></li>
+                <li class="divider"></li>
+                <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
+            </ul>
+        </div>
+        <div id="wrapper">
+            <div id="loading"></div>
+            <div id="calendar"></div>
+        </div>
+        <!-- 일정 추가 MODAL -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"></h4>
                     </div>
+                    <div class="modal-body">
 
-                </td>
-
-            </tr>
-
-            <tr>
-
-                <td>일<span class='week'></span></td>
-
-                <td>월<span class='week'></span></td>
-
-                <td>화<span class='week'></span></td>
-
-                <td>수<span class='week'></span></td>
-
-                <td>목<span class='week'></span></td>
-
-                <td>금<span class='week'></span></td>
-
-                <td>토<span class='week'></span></td>
-
-            </tr>
-
-        </thead>
-
-        <tbody id='tbody'></tbody>
-
-    </table>
-
-    <!-- 일정 생성 modal -->
-
-    <div class="modal fade" id="schduleForm" role="dialog">
-
-        <div class="modal-dialog">
-
-            <div class="modal-content">
-
-                <div class="modal-header">
-
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-
-                    <h4 class="modal-title">일정등록</h4>
-
-                </div>
-
-                <div class="modal-body">
-
-                    <form class='form-margin40' role='form' action="#" method='post'
-
-                        id='frmSchdule'>
-
-                        <div class='form-group'>
-
-                            <label>제목</label> <input type='text' class='form-control'
-
-                                id='summary' name='summary'
-
-                                placeholder="예: 오후 7시에 멕시코 음식점에서 저녁식사">
-
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-title">name</label>
+                                <input class="inputModal" type="text" name="edit-title" id="edit-title" required="required" />
+                               
+                            </div>
                         </div>
-
-                        <div class='form-group'>
-
-                            <label>시작시간</label> <input class='form-control' type="time"
-
-                                id='startTime' name='startTime'>
-
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-start">start</label>
+                                <input class="inputModal" type="text" name="edit-start" id="edit-start" />
+                            </div>
                         </div>
-
-                        <div class='form-group'>
-
-                            <label>시작날짜</label> <input class='form-control startDate'
-
-                                type="date" id='startDate' name='startDate' readonly="readonly">
-
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-end">end</label>
+                                <input class="inputModal" type="text" name="edit-end" id="edit-end" />
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-type">type</label>
+                                <select class="inputModal" name="edit-type" id="edit-type">
+                                    <option value="IT Class">IT Class</option>
+                                    <option value="Japanese Class">Japanese Class</option>
+                                    <option value="Job Fair">Job Fair</option>
 
-                        <div class='form-group'>
-
-                            <label>종료시간</label> <input class='form-control' type="time"
-
-                                id='endTime' name='endTime'>
-
+                                </select>
+                            </div>
                         </div>
-
-                        <div class='form-group'>
-
-                            <label>종료날짜</label> <input class='form-control startDate'
-
-                                type="date" id='endDate' name='endDate'>
-
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-color">Color</label>
+                                <select class="inputModal" name="color" id="edit-color">
+                                    <option value="#D25565" style="color:#D25565;">Red</option>
+                                    <option value="#9775fa" style="color:#9775fa;">Purple</option>
+                                    <option value="#ffa94d" style="color:#ffa94d;">Orange</option>
+                                    <option value="#74c0fc" style="color:#74c0fc;">Blue</option>
+                                    <option value="#f06595" style="color:#f06595;">Pink</option>
+                                </select>
+                            </div>
                         </div>
-
-                        <div class='form-group'>
-
-                            <label>내용</label>
-
-                            <textarea rows="7" class='form-control' id="description"
-
-                                name='description'></textarea>
-
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-desc">Description</label>
+                                <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
+                                    id="edit-desc"></textarea>
+                            </div>
                         </div>
-
-                        <div class='modal-footer'>
-
-                            <input type="button" class='btn btn-sm btn-warning' value="확인"
-
-                                onclick="calendarSchduleAdd()" /> <input type="reset"
-
-                                class='btn btn-sm btn-warning' value="초기화" /> <input
-
-                                type='button' class='btn btn-sm btn-warning'
-
-                                data-dismiss='modal' value="취소" />
-
-                        </div>
-
-                    </form>
-
+                    </div>
+                    <div class="modal-footer modalBtnContainer-addEvent">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+                        <button type="button" class="btn btn-primary" id="save-event">edit</button>
+                    </div>
+                    <div class="modal-footer modalBtnContainer-modifyEvent">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+                        <button type="button" class="btn btn-danger" id="deleteEvent">delete</button>
+                        <button type="button" class="btn btn-primary" id="updateEvent">edit</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Filter</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-6">
+                    <label for="calendar_view">Type</label>
+                    <div class="input-group">
+                        <select class="filter" id="type_filter" multiple="multiple">
+                            <option value="IT Class">IT Class</option>
+                            <option value="Japanese Class">Japanese Class</option>
+                            <option value="Job Fair">Job Fair</option>
+                        </select>
+                    </div>
                 </div>
 
             </div>
-
         </div>
-
+        <!-- /.filter panel -->
     </div>
-
-    <!-- 일정 수정 modal -->
-
-    <div class="modal fade" id="schduleFormModify" role="dialog">
-
-        <div class="modal-dialog">
-
-            <div class="modal-content">
-
-                <div class="modal-header">
-
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-
-                    <h4 class="modal-title">일정수정</h4>
-
-                </div>
-
-                <div class="modal-body">
-
-                    <form class='form-margin40' role='form' action="#" method='post'
-
-                        id='frmSchduleModify'>
-
-                        <div class='form-group'>
-
-                            <label>제목</label> <input type='text' class='form-control'
-
-                                id='modifySummary' name='summary'>
-
-                        </div>
-
-                        <div class='form-group'>
-
-                            <label>내용</label>
-
-                            <textarea rows="7" class='form-control' id="modifyDescription"
-
-                                name='description'></textarea>
-
-                        </div>
-
-                        <input type="hidden" id="modifyEventId" name="eventId" /> <input
-
-                            type="hidden" name="calendarId" value="${calendarId}" />
-
-                        <div class='modal-footer'>
-
-                            <input type="button" class='btn btn-sm btn-warning' value="확인"
-
-                                onclick="modifyEvent()" /> <input type="reset"
-
-                                class='btn btn-sm btn-warning' value="초기화" /> <input
-
-                                type='button' class='btn btn-sm btn-warning'
-
-                                data-dismiss='modal' value="취소" />
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-						<h2>공지사항</h2>
-							대충 여기에 리스트 뿌려주고
-					</div>
-				</div>
-			</section>
 <%--
 		<!-- Footer -->
 			<footer id="footer">
@@ -374,11 +204,23 @@
 			</footer>
  --%>
 		<!-- Scripts -->
-			<script src="../resources/assets/js/jquery.min.js"></script>
-			<script src="../resources/assets/js/browser.min.js"></script>
-			<script src="../resources/assets/js/breakpoints.min.js"></script>
-			<script src="../resources/assets/js/util.js"></script>
-			<script src="../resources/assets/js/main.js"></script>
+			<script src="/resources/assets/js/jquery.min.js"></script>
+			<script src="/resources/assets/js/browser.min.js"></script>
+			<script src="/resources/assets/js/breakpoints.min.js"></script>
+			<script src="/resources/assets/js/util.js"></script>
+			<script src="/resources/assets/js/main.js"></script> 
+    <!-- /.container -->
+    <script src="/resources/calendar/vendor/js/jquery.min.js"></script>
+    <script src="/resources/calendar/vendor/js/bootstrap.min.js"></script>
+    <script src="/resources/calendar/vendor/js/moment.min.js"></script>
+    <script src="/resources/calendar/vendor/js/fullcalendar.min.js"></script>
+    <script src="/resources/calendar/vendor/js/select2.min.js"></script>
+    <script src="/resources/calendar/vendor/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/resources/calendar/js/main.js"></script>
+    <script src="/resources/calendar/js/addEvent.js"></script>
+    <script src="/resources/calendar/js/editEvent.js"></script>
+    <script src="/resources/calendar/js/etcSetting.js"></script>
+    
 
 	</body>
 </html>
