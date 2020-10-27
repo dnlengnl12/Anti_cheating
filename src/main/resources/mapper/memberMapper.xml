@@ -24,8 +24,44 @@
 			,#{member_birth}
 			,#{member_phone}
 			,#{member_email}
-			,#{member_code}
+			,1
 			,#{school_memberCode}
 		)
 </insert>
+
+<select id="selectId" parameterType="String" resultType="String">
+	select
+		member_id
+	from
+		Member
+	where
+		member_id=#{member_id}
+</select>
+
+<select id="selectSchoolName" parameterType="String" resultType="String">
+	select
+		school_name
+	from
+		School
+	where
+		school_name like '%'||#{school_name}||'%'
+</select>
+
+<select id="selectSchoolCode" parameterType="String" resultType="String">
+	select
+		school_code
+	from
+		school
+	where
+		school_name = #{school_name}
+</select>
+
+<select id="selectDepartName" parameterType="String" resultType="String">
+	select
+		depart_name
+	from
+		department
+	where
+		school_code = #{school_code}
+</select>
 </mapper>

@@ -253,7 +253,6 @@ body .container .content .signup-cont {
 }
 
 </style>
-
 <!DOCTYPE HTML>
 <!--
 	Industrious by TEMPLATED
@@ -262,6 +261,55 @@ body .container .content .signup-cont {
 -->
 <html>
 <script type="text/javascript">
+	function searchSchoolName(){
+		$("table").text("");
+		$.ajax({
+			url: "/searchSchoolName",
+			type: "get",
+			datatype :"json",
+			data: { school_name: $("#school_name").val() },
+			success: function(list) {
+				$.each(list, function(i, item) {
+					$("#schoolName").append("<td><a onclick='selectSchool(\""+item+"\")'>"+item+"</a></td>");
+					if(i%3 == 2){
+						$("#schoolName").append("<tr>");
+					}
+				});
+			},
+			error: function(e) {
+				alert("통신 실패...");
+				console.log(e);
+			}
+				
+		});
+	}
+
+	function selectSchool(school_name){
+		$("table").text("");
+		$.ajax({
+			url: "/searchDepartName",
+			type: "get",
+			datatype: "json",
+			data: { school_name },
+			success: function(list) {
+				$.each(list, function(i, item) {
+					$("#schoolName").append("<td><a onclick='selectDepart(\""+school_name+"\",\""+item+"\")'>"+item+"</a></td>");
+				});
+
+			},
+			error: function(e) {
+				alert("통신 실패...");
+				console.log(e);
+			}
+		});
+	}
+
+	function selectDepart(school_name, depart_name){
+		/* $("#school_code", opener.document).val(school_name);
+		 */$(opener.document).find("#school_code").val(school_name);
+		 $(opener.document).find("#depart_code").val(depart_name);
+		window.self.close();
+	}
 </script>
 	<head>
 		<title>학교&학과 검색</title>
@@ -282,11 +330,13 @@ body .container .content .signup-cont {
 			        
 				            <div class="signin-cont cont">
 					                <form action="/join" method="post" enctype="multipart/form-data">
-						                <input type="text" name="member_id" id="member_id" class="inpt"  placeholder="학교를 검색 해 주세요." onKeyPress="javascript:return IsAlphaNumeric(event);">
+						                <input type="text" name="school_name" id="school_name" class="inpt" placeholder="학교를 검색 해 주세요.">
 						                   
-                                    	<input type="button" value="학교 검색" class="submit" onclick="searchSchoolCode();">
+                                    	<input type="button" value="학교 검색" class="submit" onclick="searchSchoolName();">
         					        </form>
+        					        <table id="schoolName"></table>
     				        </div>
+    				      
 			        </div>
 		    </article>
 	</section>

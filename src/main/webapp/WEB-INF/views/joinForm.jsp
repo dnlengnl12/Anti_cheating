@@ -4,6 +4,8 @@
    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>login</title>
+
+<script type="text/javascript" src="/resources/js/jquery-3.4.1.js"></script>
 <style rel="stylesheet">
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
@@ -485,6 +487,18 @@ body .container .content .signup-cont {
 -->
 <html>
 <script type="text/javascript">
+var idCheckflag = false;
+	var phone1 = document.getElementById("phone1").value;
+	var phone2 = document.getElementById("phone2").value;
+	var phone3 = document.getElementById("phone3").value;
+
+	document.getElementById("member_phone").value = phone1+"-"+phone2+"-"+phone3;
+	$(function(){
+		$("#member_id").keyup(function(e){
+			idCheckflag = false;
+
+		})
+	})
 	$(function(){
 		$("#member_password2").keyup(function(e){
 			var data = $(this).val();
@@ -514,6 +528,10 @@ body .container .content .signup-cont {
 		var school_memberCode = document.getElementById("school_memberCode").value;
 		var flag = true;
 
+		if(idCheckflag == false ){
+			alert("아이디 중복 확인을 해 주세요.");
+			return false;
+		}
 		if(member_id == ''){
 			alert("아이디를 입력 해 주세요.");
 			return false;
@@ -624,6 +642,34 @@ body .container .content .signup-cont {
 
 	}
 
+	function idCheck2() {
+		$.ajax({
+			url: "/idCheck",
+			type: "post",
+			data: { member_id: $("#member_id").val() },
+			success: function(data) {
+				if(data == "1"){
+					alert("사용할 수 있는 아이디입니다.");
+					idCheckflag = true;
+				} else {
+					alert("사용할 수 없는 아이디입니다.");
+					idCheckflag = false;
+				}
+			},
+			error: function(e) {
+				alert("통신실패...");
+				console.log(e);
+			}
+
+		});
+	}
+
+	function childForm(){
+		var parentForm = window.open('/searchSchool','학교검색',left='+(screen.availWidth-1000)/2+',top='+(screen.availHeight-600)/2+',
+				'width=1000,height=600,location=center,status=no,scrollbars=yes');
+		document.getElementById("parentForm").value = document.getElementById("childForm").value; 
+		}
+
 
 </script>
 	<head>
@@ -677,7 +723,7 @@ body .container .content .signup-cont {
 					                		<span class="explain">아이디</span>
 					                		<br>
 						                    <input type="text" name="member_id" id="member_id" class="inpt"  placeholder="아이디를 입력해 주세요." onKeyPress="javascript:return IsAlphaNumeric(event);">
-						                  	<input type="button" value="중복 확인" class="duch">
+						                  	<input type="button" value="중복 확인" class="duch" onclick="idCheck2();">
 						                  	<br>
 						                  	<span class="explain">비밀번호</span>
 						                    <br>
@@ -690,9 +736,10 @@ body .container .content .signup-cont {
 						                    <br>
 						                    <span class="explain">핸드폰 번호</span>
 						                    <br>
-						                    <input type="text" class="phoneStyle" size=3 maxlength="3" name="phon1" onKeyPress="return numkeyCheck(event)"> - 
-						                    <input type="text" class="phoneStyle2" size=4 maxlength="4" name="phone2" onKeyPress="return numkeyCheck(event)"> - 
-						                    <input type="text" class="phoneStyle3" size=4 maxlength="4" name="phone3" onKeyPress="return numkeyCheck(event)">
+						                    <input type="text" class="phoneStyle" size=3 maxlength="3" id="phon1" onKeyPress="return numkeyCheck(event)"> - 
+						                    <input type="text" class="phoneStyle2" size=4 maxlength="4" id="phone2" onKeyPress="return numkeyCheck(event)"> - 
+						                    <input type="text" class="phoneStyle3" size=4 maxlength="4" id="phone3" onKeyPress="return numkeyCheck(event)">
+						                    <input type="hidden" name="member_phone" id="member_phone">
 						                    <br>
 						                    <span class="explain">생년월일</span>
 						                    <br>
@@ -729,7 +776,7 @@ body .container .content .signup-cont {
    											<br>
    											<input type="text" id="school_code" placeholder="학교를 검색 해 주세요." readonly="true" class="schoolpt">
    											<input type="text" id="depart_code" placeholder="학과를 검색 해 주세요." readonly="true" class="departpt">
-   											<input type="button" value="학교&학과 검색" class="schoolbt" onclick="window.open('/searchSchool','학교검색',left='+(screen.availWidth-1000)/2+',top='+(screen.availHeight-600)/2+','width=1000,height=600,location=center,status=no,scrollbars=yes');">
+   											<input type="button" value="학교&학과 검색" class="schoolbt" onclick="childForm();">
 											<br>
 											<span class="explain">학번or교번</span>
 											<br>
@@ -743,9 +790,6 @@ body .container .content .signup-cont {
 			        </div>
 		    </article>
 	</section>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
 
 	</body>
 </html>
