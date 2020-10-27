@@ -4,6 +4,8 @@
    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>login</title>
+
+<script type="text/javascript" src="/resources/js/jquery-3.4.1.js"></script>
 <style rel="stylesheet">
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
@@ -99,6 +101,14 @@ body .container .content label:not([for='remember']) {
 body .container .content span.explain {
 	font-size: 15px;
 	margin: 0px 0px 12px 40px;
+}
+
+body .container .content span.check {
+  font-size: 14px;
+  width: 40%;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 16px 13px;
 }
 body .container .content input.inpt {
   font-size: 14px;
@@ -233,9 +243,23 @@ body .container .content input.phoneStyle2 {
   border-radius: 2px;
   margin: 0px 0px 12px 5px;
 }
+body .container .content input.phoneStyle3 {
+  font-size: 14px;
+  width: 13%;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 5px 13px;
+  color: #999999;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  margin: 0px 0px 12px 5px;
+}
 body .container .content input.schoolpt {
   font-size: 14px;
-  width: 40%;
+  width: 30%;
   height: 42px;
   margin-bottom: 12px;
   padding: 16px 13px;
@@ -250,7 +274,7 @@ body .container .content input.schoolpt {
 body .container .content input.schoolbt {
   font-size: 12px;
   line-height: 20px;
-  width: 17%;
+  width: 20%;
   height: 42px;
   padding: 5px 13px;
   margin-bottom: 2px;
@@ -263,6 +287,20 @@ body .container .content input.schoolbt {
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 5px;
+}
+body .container .content input.departpt {
+  font-size: 14px;
+  width: 30%;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 16px 13px;
+  color: #999999;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  margin: 0px 0px 12px 5px;
 }
 body .container .content input.studentcodept {
   font-size: 14px;
@@ -449,9 +487,102 @@ body .container .content .signup-cont {
 -->
 <html>
 <script type="text/javascript">
-	function agree(){
-		location.href="/joinForm";
+var idCheckflag = false;
+	var phone1 = document.getElementById("phone1").value;
+	var phone2 = document.getElementById("phone2").value;
+	var phone3 = document.getElementById("phone3").value;
+
+	document.getElementById("member_phone").value = phone1+"-"+phone2+"-"+phone3;
+	$(function(){
+		$("#member_id").keyup(function(e){
+			idCheckflag = false;
+
+		})
+	})
+	$(function(){
+		$("#member_password2").keyup(function(e){
+			var data = $(this).val();
+			var data2 = $("#member_password").val();
+
+			if(data != data2){
+				$("#pwcheck").css("color","red");
+				$("#pwcheck").text("비밀번호가 일치하지 않습니다.");
+			} else {
+				$("#pwcheck").css("color", "green");
+				$("#pwcheck").text("비밀번호가 일치합니다.");
+			}
+			
+
+		})
+	})
+		
+
+	function joinform(){
+		var member_id = document.getElementById("member_id").value;
+		var member_password = document.getElementById("member_password").value;
+		var member_password2 = document.getElementById("member_password2").value;
+		var member_birth = document.getElementById("member_birth").value;
+		var member_email = document.getElementById("member_email").value;
+		var selectStyle = document.getElementById("selectStyle").value;
+		var school_code = document.getElementById("school_code").value;
+		var school_memberCode = document.getElementById("school_memberCode").value;
+		var flag = true;
+
+		if(idCheckflag == false ){
+			alert("아이디 중복 확인을 해 주세요.");
+			return false;
+		}
+		if(member_id == ''){
+			alert("아이디를 입력 해 주세요.");
+			return false;
+		}
+
+		if(member_password == ''){
+			alert("비밀번호를 입력 해 주세요.");
+			return false;
+		}
+
+		if(member_password2 == ''){
+			alert("비밀번호 확인을 입력 해 주세요.");
+			return false;
+		}
+
+		if(member_birth == ''){
+			alert("생년월일을 입력 해 주세요.");
+			return false;
+		}
+		
+		if(member_birth.length != 8){
+			alert("생년월일의 양식이 맞지 않습니다.");
+			return false;
+		}
+
+		if(member_email == ''){
+			alert("이메일을 입력 해 주세요.");
+			return false;
+		}
+
+		if(selectStyle == ''){
+			alert("이메일을 입력 해 주세요.");
+			return false;
+		}
+
+		if(school_code == ''){
+			alert("학교를 입력 해 주세요.");
+			return false;
+		}
+
+		if(school_memberCode == ''){
+			alert("학번이나 교번을 입력 해 주세요.");
+			return false;
+		}
+
+		if(flag){
+			document.getElementById("joinform").submit();
+		}
+
 	}
+	
 	function SetEmailTail(emailValue) {
 		  var email = document.all("email")    // 사용자 입력
 		  var emailTail = document.all("email2") // Select box
@@ -467,6 +598,78 @@ body .container .content .signup-cont {
 		   emailTail.value = emailValue;
 		  }
 	}
+
+	function IsAlphaNumeric(ee){
+		var keyCode = ee.keyCode == 0 ? ee.charCode : ee.keyCode;
+
+		//예외키 규정
+		var specialKeys = new Array();
+		specialKeys.push(8); //backspace
+		specialKeys.push(9); //tap
+		specialKeys.push(46); //Delete
+		specialKeys.push(36); //Home
+		specialKeys.push(35); //end
+		specialKeys.push(37); //left
+		specialKeys.push(39); //right
+		var ret = ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 65 &&keyCode <= 90));
+
+		if(!ret){ alert("영어와 숫자만 입력하실 수 있습니다.");}
+		return ret;
+	}
+	$(function() {
+		    $(".phoneStyle").keyup (function () {
+		        var charLimit = $(this).attr("maxlength");
+		        if (this.value.length >= charLimit) {
+		            $(this).next('.phoneStyle2').focus();
+		            return false;
+		        }
+		   });
+
+			$(".phoneStyle2").keyup (function() {
+				var charLimit = $(this).attr("maxlength");
+				if( this.value.length >= charLimit) {
+					$(this).next('.phoneStyle3').focus();
+					return false;
+				}
+
+			});
+	});
+
+	function numkeyCheck(e) {
+		var keyValue = event.keyCode;
+		if( ((keyValue >= 48 ) && (keyValue <= 57))) return true;
+		else { alert("숫자만 입력하실 수 있습니다."); return false;}
+
+	}
+
+	function idCheck2() {
+		$.ajax({
+			url: "/idCheck",
+			type: "post",
+			data: { member_id: $("#member_id").val() },
+			success: function(data) {
+				if(data == "1"){
+					alert("사용할 수 있는 아이디입니다.");
+					idCheckflag = true;
+				} else {
+					alert("사용할 수 없는 아이디입니다.");
+					idCheckflag = false;
+				}
+			},
+			error: function(e) {
+				alert("통신실패...");
+				console.log(e);
+			}
+
+		});
+	}
+
+	function childForm(){
+		var parentForm = window.open('/searchSchool','학교검색',left='+(screen.availWidth-1000)/2+',top='+(screen.availHeight-600)/2+',
+				'width=1000,height=600,location=center,status=no,scrollbars=yes');
+		document.getElementById("parentForm").value = document.getElementById("childForm").value; 
+		}
+
 
 </script>
 	<head>
@@ -514,35 +717,40 @@ body .container .content .signup-cont {
 			        <div class="tabs">
 			        </div>
 			        <div class="content">
+			        
 				            <div class="signin-cont cont">
-					                <form action="login.do" method="post" enctype="multipart/form-data">
+					                <form action="/join" method="post" enctype="multipart/form-data">
 					                		<span class="explain">아이디</span>
 					                		<br>
-						                    <input type="text" name="m_id" id="email" class="inpt"  placeholder="아이디를 입력해 주세요.">
-						                  	<input type="button" value="중복 확인" class="duch">
+						                    <input type="text" name="member_id" id="member_id" class="inpt"  placeholder="아이디를 입력해 주세요." onKeyPress="javascript:return IsAlphaNumeric(event);">
+						                  	<input type="button" value="중복 확인" class="duch" onclick="idCheck2();">
 						                  	<br>
 						                  	<span class="explain">비밀번호</span>
 						                    <br>
-						                    <input type="password" name="m_password" id="password" class="inpt2"  placeholder="비밀번호를 입력해 주세요.">
+						                    <input type="password" name="member_password" id="member_password" class="inpt2"  placeholder="비밀번호를 입력해 주세요.">
                 						    <br>
                 						    <span class="explain">비밀번호 확인</span>
                 						    <br>
-                						    <input type="password" id="password2" placeholder="비밀번호를 확인해 주세요." class="inpt2">
+                						    <input type="password" id="member_password2" placeholder="비밀번호를 확인해 주세요." class="inpt2">
+                						    <span id="pwcheck" class="check"></span>
 						                    <br>
 						                    <span class="explain">핸드폰 번호</span>
 						                    <br>
-						                    <input type="text" class="phoneStyle"> - <input type="text" class="phoneStyle2"> - <input type="text" class="phoneStyle2">
+						                    <input type="text" class="phoneStyle" size=3 maxlength="3" id="phon1" onKeyPress="return numkeyCheck(event)"> - 
+						                    <input type="text" class="phoneStyle2" size=4 maxlength="4" id="phone2" onKeyPress="return numkeyCheck(event)"> - 
+						                    <input type="text" class="phoneStyle3" size=4 maxlength="4" id="phone3" onKeyPress="return numkeyCheck(event)">
+						                    <input type="hidden" name="member_phone" id="member_phone">
 						                    <br>
 						                    <span class="explain">생년월일</span>
 						                    <br>
-						                    <input type="text" placeholder="예)19950213" class="birthpt">
+						                    <input type="text" name="member_birth" id="member_birth" placeholder="예)19950213" class="birthpt">
 						                    <br>
 						                    <span class="explain">이메일</span>
 						                    <br>
 						                    <input type="text" class="emailpt">
-						                 	<b>@</b>
+						                 	<b> @</b>
 						                    
-						                    <input type="text" id="selectStyle" name="email2" value="" ReadOnly="true" class="emailpt2">
+						                    <input type="text" id="member_email" name="email2" value="" ReadOnly="true" class="emailpt2">
 											<select name="emailCheck" id="selectStyle" onchange="SetEmailTail(emailCheck.options[this.selectedIndex].value)" class="emailpt3">
     											<option value="notSelected" >::선택하세요::</option>
     											<option value="etc">직접입력</option>
@@ -566,24 +774,22 @@ body .container .content .signup-cont {
    											<br>
    											<span class="explain">학교&학과</span>
    											<br>
-   											<input type="text" placeholder="학교를 검색를 해 주세요." readonly="true" class="schoolpt">
-   											<input type="button" value="학교 검색" class="schoolbt">
+   											<input type="text" id="school_code" placeholder="학교를 검색 해 주세요." readonly="true" class="schoolpt">
+   											<input type="text" id="depart_code" placeholder="학과를 검색 해 주세요." readonly="true" class="departpt">
+   											<input type="button" value="학교&학과 검색" class="schoolbt" onclick="childForm();">
 											<br>
 											<span class="explain">학번or교번</span>
 											<br>
-											<input type="text" placeholder="학번or교번을 입력 해 주세요." class="studentcodept">
+											<input type="text" id="school_memberCode" placeholder="학번or교번을 입력 해 주세요." class="studentcodept">
 						                    <div class="submit-wrap">
 						                   
-                                    <input type="button" value="회원가입" class="submit" onclick="agree();">
+                                    <input type="button" value="회원가입" class="submit" onclick="joinform();">
                                 </div>
         					        </form>
     				        </div>
 			        </div>
 		    </article>
 	</section>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
 
 	</body>
 </html>

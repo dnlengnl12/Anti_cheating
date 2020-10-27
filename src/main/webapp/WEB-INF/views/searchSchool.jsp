@@ -18,7 +18,7 @@ body .container {
   position: relative;
   overflow: hidden;
   width: 700px;
-  height: 500px;
+  height: 700px;
   margin: 80px auto 00;
 }
 body .container h1 {
@@ -38,9 +38,11 @@ body .container .tabs {
 
 
 }
+
+
 body .container .tabs .tab {
   display: inline-block;
-  width:100%;
+  width:30%;
   margin-bottom: -1px;
 
   padding-bottom: 10px;
@@ -52,16 +54,11 @@ body .container .tabs .tab {
   color: #263238;
   font-size: 11px;
 }
-body .container .tabs span{
-  text-align: center;
-
-}
-
-
 body .container .content form {
   position: relative;
   height: 287px;
 }
+
 body .container .content label:first-of-type, body .container .content input:first-of-type, body .container .content .more:first-of-type {
   -moz-animation: slideIn 0.4s cubic-bezier(0.37, 0.82, 0.2, 1);
   -webkit-animation: slideIn 0.4s cubic-bezier(0.37, 0.82, 0.2, 1);
@@ -88,10 +85,10 @@ body .container .content label {
 body .container .content label:not([for='remember']) {
   display: none;
 }
+
 body .container .content input.inpt {
   font-size: 14px;
-  display: block;
-  width: 100%;
+  width: 40%;
   height: 42px;
   margin-bottom: 12px;
   padding: 16px 13px;
@@ -101,6 +98,7 @@ body .container .content input.inpt {
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
+  margin: 0px 0px 12px 140px;
 }
 body .container .content input.inpt::-webkit-input-placeholder {
   font-size: 14px;
@@ -128,8 +126,7 @@ body .container .content input.inpt:focus {
 body .container .content input.submit {
   font-size: 12px;
   line-height: 42px;
-  display: block;
-  width: 48%;
+  width: 20%;
   height: 42px;
   cursor: pointer;
   vertical-align: middle;
@@ -141,7 +138,23 @@ body .container .content input.submit {
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  float : right;
+}
+body .container .content  input.duch {
+  font-size: 12px;
+  line-height: 20px;
+  width: 17%;
+  height: 42px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  vertical-align: middle;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #263238;
+  border: 1px solid #5a60c5;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 5px;
 }
 body .container .content input.submit:hover {
   background-color: #263238;
@@ -240,7 +253,6 @@ body .container .content .signup-cont {
 }
 
 </style>
-
 <!DOCTYPE HTML>
 <!--
 	Industrious by TEMPLATED
@@ -249,12 +261,58 @@ body .container .content .signup-cont {
 -->
 <html>
 <script type="text/javascript">
-	function agree(){
-		location.href="/agree";
+	function searchSchoolName(){
+		$("table").text("");
+		$.ajax({
+			url: "/searchSchoolName",
+			type: "get",
+			datatype :"json",
+			data: { school_name: $("#school_name").val() },
+			success: function(list) {
+				$.each(list, function(i, item) {
+					$("#schoolName").append("<td><a onclick='selectSchool(\""+item+"\")'>"+item+"</a></td>");
+					if(i%3 == 2){
+						$("#schoolName").append("<tr>");
+					}
+				});
+			},
+			error: function(e) {
+				alert("통신 실패...");
+				console.log(e);
+			}
+				
+		});
+	}
+
+	function selectSchool(school_name){
+		$("table").text("");
+		$.ajax({
+			url: "/searchDepartName",
+			type: "get",
+			datatype: "json",
+			data: { school_name },
+			success: function(list) {
+				$.each(list, function(i, item) {
+					$("#schoolName").append("<td><a onclick='selectDepart(\""+school_name+"\",\""+item+"\")'>"+item+"</a></td>");
+				});
+
+			},
+			error: function(e) {
+				alert("통신 실패...");
+				console.log(e);
+			}
+		});
+	}
+
+	function selectDepart(school_name, depart_name){
+		/* $("#school_code", opener.document).val(school_name);
+		 */$(opener.document).find("#school_code").val(school_name);
+		 $(opener.document).find("#depart_code").val(depart_name);
+		window.self.close();
 	}
 </script>
 	<head>
-		<title>Industrious by TEMPLATED</title>
+		<title>학교&학과 검색</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
@@ -263,127 +321,28 @@ body .container .content .signup-cont {
 	</head>
 	
 	<body class="is-preload">
+	<section class="container">
+		    <article class="login_header">
+              <h1>학교&학과 검색</h1>
+			        <div class="tabs">
+			        </div>
+			        <div class="content">
+			        
+				            <div class="signin-cont cont">
+					                <form action="/join" method="post" enctype="multipart/form-data">
+						                <input type="text" name="school_name" id="school_name" class="inpt" placeholder="학교를 검색 해 주세요.">
+						                   
+                                    	<input type="button" value="학교 검색" class="submit" onclick="searchSchoolName();">
+        					        </form>
+        					        <table id="schoolName"></table>
+    				        </div>
+    				      
+			        </div>
+		    </article>
+	</section>
 
-		<!-- Header -->
-			<header id="header">
-				<a class="logo" href="/">Industrious</a>
-				<nav>
-					<a href="#menu">Menu</a>
-				</nav>
-			</header>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-		<!-- Nav -->
-			<nav id="menu">
-				<ul class="links">
-					<li><a href="/">HOME</a></li>
-					<li><a href="/professor/main">PROFESSOR</a></li>
-					<li><a href="/student/main">STUDENT</a></li>  
-					<li><a href="/manager/main">MANAGER</a></li>  
-				</ul>
-			</nav>
-
-		<!-- Banner -->
-			<section id="banner">
-				<video autoplay loop muted playsinline src="../resources/images/banner.mp4"></video>
-			</section>
-
-
-		<!-- Highlights -->
-		
-		<c:if test="${notVerify }">
-			<script>
-				alert("이메일 인증이 되지 않았습니다! 이메일을 확인하시고 인증해주시기 바랍니다!");
-			</script>
-			</c:if>
-			<c:if test="${notExist }">
-			<script>
-				alert("아이디나 비밀번호가 일치하지 않습니다!");
-			</script>
-		</c:if>
-
-			<section class="wrapper">
-				<div class="inner">
-					<section class="container">
-							    <article class="login_header">
-					              <h1>로그인</h1>
-							        <div class="tabs">
-							        </div>
-							        <div class="content">
-								            <div class="signin-cont cont">
-								                <form action="login.do" method="post" enctype="multipart/form-data">
-									                    <input type="text" name="m_id" id="email" class="inpt"  placeholder="Your ID">
-			
-									                    <input type="password" name="m_password" id="password" class="inpt"  placeholder="Your password">
-			                						    <label for="password">Your password</label>
-									                    <input type="checkbox" id="remember" class="checkbox" checked>
-									                    <label for="remember">Remember me</label>
-									                    <div class="submit-wrap">
-			                                    <input type="button" value="회원가입" class="submit" onclick="agree();">
-                                   
-			                                    <input type="submit" value="로그인" class="submit" onclick=";"><br><br>
-                                    
-            		                          <a href="search" class="more">아이디 / 비밀번호를 잊으셨나요?</a>
-                          
-        	                        </div>
-    	                            <div class="sign_up">
-	
-                    	            </div>
-        							        </form>
-    					        </div>
-				        </div>
-			    </article>
-		</section>
-				
-				
-						
-						
-					
-					</div>
-				</div>
-			</section>
-	
-
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="inner">
-					<div class="content">
-						<section>
-							<h3>Accumsan montes viverra</h3>
-							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
-						</section>
-						<section>
-							<h4>Sem turpis amet semper</h4>
-							<ul class="alt">
-								<li><a href="#">Dolor pulvinar sed etiam.</a></li>
-								<li><a href="#">Etiam vel lorem sed amet.</a></li>
-								<li><a href="#">Felis enim feugiat viverra.</a></li>
-								<li><a href="#">Dolor pulvinar magna etiam.</a></li>
-							</ul>
-						</section>
-						<section>
-							<h4>Magna sed ipsum</h4>
-							<ul class="plain">
-								<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
-								<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
-								<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
-								<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
-							</ul>
-						</section>
-					</div>
-					<div class="copyright">
-						&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
-					</div>
-				</div>
-			</footer>
-
-		<!-- Scripts -->
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		
-			<script src="../resources/assets/js/jquery.min.js"></script>
-			<script src="../resources/assets/js/browser.min.js"></script>
-			<script src="../resources/assets/js/breakpoints.min.js"></script>
-			<script src="../resources/assets/js/util.js"></script>
-			<script src="../resources/assets/js/main.js"></script>
 
 	</body>
 </html>

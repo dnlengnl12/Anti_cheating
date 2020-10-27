@@ -6,9 +6,17 @@
 	<typeAliases>
 		<typeAlias type="com.dyung.kim.vo.NoticeVO" alias="notice"/>
 		<typeAlias type="com.dyung.kim.vo.EventVO" alias="event" />
+		
+		<typeAlias type="com.dyung.kim.vo.SchoolVO" alias="school"/>
+		<typeAlias type="com.dyung.kim.vo.DepartVO" alias="depart"/>
+		<typeAlias type="com.dyung.kim.vo.MemberVO" alias="member"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/noticeMapper.xml"/>
 		<mapper resource="mapper/eventMapper.xml" />
+		<mapper resource="mapper/noticeMapper.xml"/>
+		<mapper resource="mapper/managerMapper.xml"/>
+		<mapper resource="mapper/memberMapper.xml"/>
+
 	</mappers>
 </configuration>

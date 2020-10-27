@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dyung.kim.dao.ManagerMapper">
+		
+	<insert id="insertSchool" parameterType="school">
+		insert into
+			School(
+				school_code,
+				school_name
+			)values(
+				#{school_code},
+				#{school_name}
+			)
+	</insert>
+	
+	<select id="selcetOneSchool" parameterType="String" resultType="school">
+		select
+			school_code,
+			school_name
+		from
+			School
+		where
+			school_code = #{school_code}
+	</select>
+	
+	<insert id="insertDepart" parameterType="hashmap">
+		insert into 
+			Department(
+				depart_code,
+				school_code,
+				depart_name
+			)values(
+				#{depart_code},
+				#{school_code},
+				#{depart_name}
+			)
+	</insert>
+</mapper>
