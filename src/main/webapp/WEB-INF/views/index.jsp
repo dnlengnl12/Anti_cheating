@@ -310,10 +310,11 @@ body .container .content .signup-cont {
 							        </div>
 							        <div class="content">
 								            <div class="signin-cont cont">
-								                <form action="login.do" method="post" enctype="multipart/form-data">
-									                    <input type="text" name="m_id" id="email" class="inpt"  placeholder="Your ID">
+								                <form action="login.do" method="post" en
+								                ctype="multipart/form-data">
+									                    <input type="text" name="member_id" id="email" class="inpt"  placeholder="Your ID">
 			
-									                    <input type="password" name="m_password" id="password" class="inpt"  placeholder="Your password">
+									                    <input type="password" name="member_password" id="password" class="inpt"  placeholder="Your password">
 			                						    <label for="password">Your password</label>
 									                    <input type="checkbox" id="remember" class="checkbox" checked>
 									                    <label for="remember">Remember me</label>
